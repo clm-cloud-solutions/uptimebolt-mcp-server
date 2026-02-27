@@ -56,7 +56,7 @@ Config file locations:
 
 ## HTTP Mode (for remote access / CI/CD)
 ```bash
-docker run -p 3100:3100 -e UPTIMEBOLT_API_URL=https://api.uptimebolt.io uptimebolt/mcp-server
+docker run -p 3100:3100 -e UPTIMEBOLT_API_URL=https://api.uptimebolt.io ghcr.io/clm-cloud-solutions/uptimebolt-mcp-server
 ```
 
 No API key required at startup — clients pass their key via x-api-key header per request.

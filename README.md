@@ -89,7 +89,7 @@ Add to your project's `.mcp.json`:
 ```bash
 docker run -p 3100:3100 \
   -e UPTIMEBOLT_API_URL=https://api.uptimebolt.io \
-  uptimebolt/mcp-server:latest
+  ghcr.io/clm-cloud-solutions/uptimebolt-mcp-server:latest
 ```
 
 Then connect via `mcp-remote`:
