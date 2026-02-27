@@ -1,0 +1,26 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      uptimeboltApiKey:
+        type: string
+        title: UptimeBolt API Key
+        description: Your UptimeBolt API key (starts with uptb_)
+      uptimeboltApiUrl:
+        type: string
+        title: UptimeBolt API URL
+        description: UptimeBolt API base URL
+        default: https://api.uptimebolt.io
+    required:
+      - uptimeboltApiKey
+  commandFunction:
+    |-
+    (config) => ({
+      command: 'node',
+      args: ['dist/server.js'],
+      env: {
+        UPTIMEBOLT_API_KEY: config.uptimeboltApiKey,
+        UPTIMEBOLT_API_URL: config.uptimeboltApiUrl || 'https://api.uptimebolt.io'
+      }
+    })

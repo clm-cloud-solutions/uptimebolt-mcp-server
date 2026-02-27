@@ -1,0 +1,10 @@
+node_modules
+dist
+logs
+.git
+.github
+.env
+.env.*
+*.md
+LICENSE
+.DS_Store
