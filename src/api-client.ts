@@ -78,10 +78,10 @@ export const apiClient = {
 export function validateApiKey(): void {
   if (!API_KEY) {
     process.stderr.write(
-      "Error: UPTIMEBOLT_API_KEY environment variable is required.\n" +
+      "Error: UPTIMEBOLT_API_KEY environment variable is required (stdio mode).\n" +
         "Set it to your UptimeBolt API key.\n\n" +
         "Usage:\n" +
-        '  UPTIMEBOLT_API_KEY=your-key node dist/server.js\n\n'
+        "  UPTIMEBOLT_API_KEY=your-key UPTIMEBOLT_API_URL=https://api.uptimebolt.io node dist/server.js\n\n"
     );
     process.exit(1);
   }

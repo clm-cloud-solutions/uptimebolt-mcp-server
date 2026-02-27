@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import "dotenv/config";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import crypto from "crypto";

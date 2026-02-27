@@ -1,5 +1,5 @@
 export { TOOLS, HANDLERS } from "./tools";
-export { apiClient, ApiError } from "./api-client";
+export { apiClient, ApiError, validateApiKey } from "./api-client";
 export {
   formatServiceStatus,
   formatPredictions,
