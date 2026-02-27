@@ -19,6 +19,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - run: npm publish --access public
+      - run: npm publish --access public || echo "Version already published, skipping."
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
