@@ -9,15 +9,38 @@ Repository: https://github.com/clm-cloud-solutions/uptimebolt-mcp-server
 - Node.js 18+
 - An UptimeBolt API key (get one at https://app.uptimebolt.io/settings/api-keys)
 
-## Quick Install (stdio mode for Claude Desktop / Claude Code / Cursor)
+## Install
+
+```bash
+npm install -g @uptimebolt/mcp-server
+```
+
+This makes the `uptimebolt-mcp` and `uptimebolt-mcp-http` commands available globally.
+
+## Quick Setup (stdio mode for Claude Desktop / Claude Code / Cursor)
 
 Add to your MCP config:
 ```json
 {
   "mcpServers": {
     "uptimebolt": {
+      "command": "uptimebolt-mcp",
+      "env": {
+        "UPTIMEBOLT_API_KEY": "YOUR_KEY",
+        "UPTIMEBOLT_API_URL": "https://api.uptimebolt.io"
+      }
+    }
+  }
+}
+```
+
+Without global install (using npx):
+```json
+{
+  "mcpServers": {
+    "uptimebolt": {
       "command": "npx",
-      "args": ["-y", "@uptimebolt/mcp-server"],
+      "args": ["-y", "--package=@uptimebolt/mcp-server", "uptimebolt-mcp"],
       "env": {
         "UPTIMEBOLT_API_KEY": "YOUR_KEY",
         "UPTIMEBOLT_API_URL": "https://api.uptimebolt.io"

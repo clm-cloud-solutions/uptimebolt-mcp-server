@@ -25,6 +25,12 @@ Ask your infrastructure questions in natural language. Instead of navigating das
 
 ## Quick Start
 
+### Install globally (recommended)
+
+```bash
+npm install -g @uptimebolt/mcp-server
+```
+
 ### Claude Desktop (stdio)
 
 Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
@@ -33,8 +39,24 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 {
   "mcpServers": {
     "uptimebolt": {
+      "command": "uptimebolt-mcp",
+      "env": {
+        "UPTIMEBOLT_API_KEY": "your-api-key",
+        "UPTIMEBOLT_API_URL": "https://api.uptimebolt.io"
+      }
+    }
+  }
+}
+```
+
+Or without global install, using npx:
+
+```json
+{
+  "mcpServers": {
+    "uptimebolt": {
       "command": "npx",
-      "args": ["-y", "@uptimebolt/mcp-server"],
+      "args": ["-y", "--package=@uptimebolt/mcp-server", "uptimebolt-mcp"],
       "env": {
         "UPTIMEBOLT_API_KEY": "your-api-key",
         "UPTIMEBOLT_API_URL": "https://api.uptimebolt.io"
@@ -52,8 +74,7 @@ Add to your project's `.mcp.json`:
 {
   "mcpServers": {
     "uptimebolt": {
-      "command": "npx",
-      "args": ["-y", "@uptimebolt/mcp-server"],
+      "command": "uptimebolt-mcp",
       "env": {
         "UPTIMEBOLT_API_KEY": "your-api-key",
         "UPTIMEBOLT_API_URL": "https://api.uptimebolt.io"
