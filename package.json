@@ -58,5 +58,13 @@
     "dist/",
     "README.md",
     "LICENSE"
-  ]
+  ],
+  "author": {
+    "name": "CLM Cloud Solutions S.L.",
+    "url": "https://clmcloudsolutions.es"
+  },
+  "homepage": "https://uptimebolt.com",
+  "bugs": {
+    "url": "https://github.com/clm-cloud-solutions/uptimebolt-mcp-server/issues"
+  }
 }
