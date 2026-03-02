@@ -1,6 +1,6 @@
 {
   "name": "@uptimebolt/mcp-server",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "UptimeBolt MCP Server — AI-powered infrastructure monitoring tools for Claude, CI/CD pipelines, and MCP clients",
   "mcpName": "io.github.clm-cloud-solutions/uptimebolt-mcp-server",
   "license": "MIT",

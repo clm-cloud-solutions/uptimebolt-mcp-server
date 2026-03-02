@@ -12,7 +12,13 @@ import { TOOLS, HANDLERS } from "./tools";
 // Smithery sandbox: allows scanning tools without real credentials
 export function createSandboxServer() {
   const server = new Server(
-    { name: "uptimebolt", version: "1.0.0" },
+    {
+      name: "uptimebolt-mcp-server",
+      title: "UptimeBolt MCP Server",
+      description: "AI-powered infrastructure monitoring — query monitor health, incidents, AI predictions, root cause analysis, deploy safety checks, and executive summaries via MCP.",
+      version: "1.0.0",
+      websiteUrl: "https://uptimebolt.com",
+    },
     { capabilities: { tools: {} } }
   );
 
@@ -34,7 +40,13 @@ async function main() {
   validateApiKey();
 
   const server = new Server(
-    { name: "uptimebolt", version: "1.0.0" },
+    {
+      name: "uptimebolt-mcp-server",
+      title: "UptimeBolt MCP Server",
+      description: "AI-powered infrastructure monitoring — query monitor health, incidents, AI predictions, root cause analysis, deploy safety checks, and executive summaries via MCP.",
+      version: "1.0.0",
+      websiteUrl: "https://uptimebolt.com",
+    },
     { capabilities: { tools: {} } }
   );
 

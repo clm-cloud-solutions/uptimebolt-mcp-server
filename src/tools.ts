@@ -20,6 +20,13 @@ export const TOOLS = [
         service_name: { type: "string", description: "Name of the service (fuzzy match). Alternative to service_id." },
       },
     },
+    annotations: {
+      title: "Service Health Status",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
   },
   {
     name: "get_predictions",
@@ -31,6 +38,13 @@ export const TOOLS = [
         monitor_id: { type: "string", description: "Filter predictions by monitor UUID." },
         min_confidence: { type: "number", description: "Minimum confidence threshold (0-100). Default: 60." },
       },
+    },
+    annotations: {
+      title: "AI Predictions",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
     },
   },
   {
@@ -46,6 +60,13 @@ export const TOOLS = [
         include_rca: { type: "boolean", description: "Include root cause analysis details. Default: true." },
       },
     },
+    annotations: {
+      title: "Incident List",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
   },
   {
     name: "get_monitor_health",
@@ -58,6 +79,13 @@ export const TOOLS = [
         period: { type: "string", enum: ["1h", "6h", "24h", "7d", "30d"], description: "Time period for statistics. Default: 24h." },
       },
     },
+    annotations: {
+      title: "Monitor Health Details",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
   },
   {
     name: "get_deployments",
@@ -69,6 +97,13 @@ export const TOOLS = [
         hours: { type: "number", description: "Look back N hours. Default: 24." },
         include_correlations: { type: "boolean", description: "Include incident correlations. Default: true." },
       },
+    },
+    annotations: {
+      title: "Deployment History",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
     },
   },
   {
@@ -83,6 +118,13 @@ export const TOOLS = [
         tier: { type: "string", enum: ["basic", "standard", "deep", "premium"], description: "Analysis depth tier. Default: standard." },
       },
     },
+    annotations: {
+      title: "Root Cause Analysis",
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: false,
+    },
   },
   {
     name: "is_safe_to_deploy",
@@ -93,6 +135,13 @@ export const TOOLS = [
         service_id: { type: "string", description: "UUID of the service to check." },
         service_name: { type: "string", description: "Name of the service (fuzzy match)." },
       },
+    },
+    annotations: {
+      title: "Deploy Safety Check",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
     },
   },
   {
@@ -105,6 +154,13 @@ export const TOOLS = [
         language: { type: "string", enum: ["es", "en"], description: "Response language. Default: es." },
       },
     },
+    annotations: {
+      title: "Executive Summary",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: false,
+    },
   },
   {
     name: "get_monitors",
@@ -116,6 +172,13 @@ export const TOOLS = [
         type: { type: "string", enum: ["http", "tcp", "dns", "database", "email", "synthetic", "push", "ping"], description: "Filter by monitor type." },
       },
     },
+    annotations: {
+      title: "Monitor List",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
   },
   {
     name: "get_monitor_metrics",
@@ -126,6 +189,13 @@ export const TOOLS = [
         monitor_id: { type: "string", description: "UUID of the monitor." },
         monitor_name: { type: "string", description: "Name of the monitor (fuzzy match). Alternative to monitor_id." },
       },
+    },
+    annotations: {
+      title: "Monitor Metrics",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
     },
   },
 ];
