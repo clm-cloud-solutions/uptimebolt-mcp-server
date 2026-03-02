@@ -67,27 +67,34 @@ app.post("/mcp", async (req: Request, res: Response) => {
   const userAgent = req.headers["user-agent"] || "unknown";
   const method = req.body?.method;
 
-  if (!apiKey) {
+  // Allow initialize and tools/list without API key (discovery for Smithery, MCP clients)
+  const isDiscovery = method === "initialize" || method === "tools/list";
+
+  if (!apiKey && !isDiscovery) {
     logger.warn("Request without API key", { requestId, clientIp, userAgent, method });
     res.status(401).json({ error: "x-api-key header required" });
     return;
   }
 
-  const maskedKey = `${apiKey.substring(0, 8)}...${apiKey.substring(apiKey.length - 4)}`;
+  const maskedKey = apiKey
+    ? `${apiKey.substring(0, 8)}...${apiKey.substring(apiKey.length - 4)}`
+    : "none";
 
-  // Validate API key against the main API
-  try {
-    await apiClient.get("/monitors", { page: "1", limit: "1" }, 5000, apiKey);
-  } catch (err) {
-    logger.warn("API key validation failed", {
-      requestId,
-      maskedKey,
-      clientIp,
-      userAgent,
-      error: err instanceof Error ? err.message : String(err),
-    });
-    res.status(401).json({ error: "Invalid or expired API key" });
-    return;
+  // Validate API key against the main API (skip for discovery requests)
+  if (apiKey) {
+    try {
+      await apiClient.get("/monitors", { page: "1", limit: "1" }, 5000, apiKey);
+    } catch (err) {
+      logger.warn("API key validation failed", {
+        requestId,
+        maskedKey,
+        clientIp,
+        userAgent,
+        error: err instanceof Error ? err.message : String(err),
+      });
+      res.status(401).json({ error: "Invalid or expired API key" });
+      return;
+    }
   }
 
   logger.info("MCP request", { requestId, method, maskedKey, clientIp, userAgent });
