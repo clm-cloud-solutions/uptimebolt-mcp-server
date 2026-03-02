@@ -7,6 +7,8 @@ startCommand:
         type: string
         title: UptimeBolt API Key
         description: Your UptimeBolt API key (starts with uptb_)
+        x-from:
+          header: x-api-key
       uptimeboltApiUrl:
         type: string
         title: UptimeBolt API URL
