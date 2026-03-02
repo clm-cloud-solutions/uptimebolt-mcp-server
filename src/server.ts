@@ -9,6 +9,27 @@ import {
 import { validateApiKey } from "./api-client";
 import { TOOLS, HANDLERS } from "./tools";
 
+// Smithery sandbox: allows scanning tools without real credentials
+export function createSandboxServer() {
+  const server = new Server(
+    { name: "uptimebolt", version: "1.0.0" },
+    { capabilities: { tools: {} } }
+  );
+
+  server.setRequestHandler(ListToolsRequestSchema, async () => ({
+    tools: TOOLS,
+  }));
+
+  server.setRequestHandler(CallToolRequestSchema, async (request) => {
+    const { name } = request.params;
+    return {
+      content: [{ type: "text", text: `Sandbox mode: tool ${name} is available but not connected to a live API.` }],
+    };
+  });
+
+  return server;
+}
+
 async function main() {
   validateApiKey();
 
@@ -39,7 +60,10 @@ async function main() {
   await server.connect(transport);
 }
 
-main().catch((err) => {
-  process.stderr.write(`Fatal error: ${err.message}\n`);
-  process.exit(1);
-});
+// Only run main() when executed directly (not when imported by Smithery/tests)
+if (require.main === module) {
+  main().catch((err) => {
+    process.stderr.write(`Fatal error: ${err.message}\n`);
+    process.exit(1);
+  });
+}

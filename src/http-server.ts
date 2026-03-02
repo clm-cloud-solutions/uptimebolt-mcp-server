@@ -48,6 +48,17 @@ app.get("/health", (_req: Request, res: Response) => {
   res.json({ status: "ok", server: "uptimebolt-mcp", timestamp: new Date().toISOString() });
 });
 
+// Smithery / MCP discovery — server card for automated scanning
+app.get("/.well-known/mcp/server-card.json", (_req: Request, res: Response) => {
+  res.json({
+    name: "uptimebolt",
+    description: "AI-powered infrastructure monitoring — health, incidents, predictions, RCA, deploy safety",
+    homepage: "https://uptimebolt.com",
+    logo: "https://raw.githubusercontent.com/clm-cloud-solutions/uptimebolt-mcp-server/main/logo.png",
+    tools: TOOLS.map((t) => ({ name: t.name, description: t.description })),
+  });
+});
+
 // POST /mcp — MCP protocol messages (initialize, tools/list, tools/call)
 app.post("/mcp", async (req: Request, res: Response) => {
   const requestId = crypto.randomUUID().substring(0, 8);
